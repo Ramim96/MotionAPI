@@ -2,6 +2,7 @@
 
 namespace Domain.Entities;
 
-public sealed class GlobalActivityLog : ActivityLog
+public sealed class GlobalActivityLog :
+    ActivityLog
 {
 }

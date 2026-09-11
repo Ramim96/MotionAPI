@@ -3,7 +3,9 @@ using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public sealed class AppUser : GlobalEntity, IEntityEquality<AppUser>
+public sealed class AppUser :
+    GlobalEntity,
+    IEntityEquality<AppUser>
 {
     public string FirstName { get; set; } = string.Empty;
 

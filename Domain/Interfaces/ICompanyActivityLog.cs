@@ -17,6 +17,11 @@ public interface ICompanyActivityLogId
     public Guid CompanyActivityLogId { get; set; }
 }
 
+public interface INullableCompanyActivityLogId
+{
+    public Guid? CompanyActivityLogId { get; set; }
+}
+
 #endregion ICompanyActivityLogId
 
 #region ICompanyActivityLog<T>

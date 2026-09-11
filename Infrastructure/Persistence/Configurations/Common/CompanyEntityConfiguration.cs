@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Common;
+﻿using Domain.Entities;
+using Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -28,7 +29,7 @@ internal class CompanyEntityConfiguration<TEntity> : IEntityTypeConfiguration<TE
             .HasConstraintName($"FK_{entityName}_CompanyId");
 
         builder
-            .HasOne(x => x.CompanyActivityLog)
+            .HasOne<CompanyActivityLog>()
             .WithOne()
             .HasForeignKey<TEntity>(x => x.CompanyActivityLogId)
             .HasConstraintName($"FK_{entityName}_CompanyActivityLogId");

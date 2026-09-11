@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Common;
+﻿using Domain.Entities;
+using Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,7 +23,7 @@ internal abstract class GlobalEntityConfiguration<TEntity> : IEntityTypeConfigur
 
         // Foreign keys.
         builder
-            .HasOne(x => x.GlobalActivityLog)
+            .HasOne<GlobalActivityLog>()
             .WithOne()
             .HasForeignKey<TEntity>(x => x.GlobalActivityLogId)
             .HasConstraintName($"FK_{entityName}_GlobalActivityLogId");
