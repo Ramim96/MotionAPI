@@ -1,17 +1,40 @@
-﻿using Domain.Entities;
+﻿namespace Domain.Interfaces;
 
-namespace Domain.Interfaces;
+#region ICompany
 
-public interface ICompany : ICompanyId, ICompanyEntity
+public interface ICompany<T> : ICompanyId, ICompanyEntity<T>
 {
 }
+
+#endregion ICompany
+
+#region INullableCompany
+
+public interface INullableCompany<T> : INullableCompanyId, ICompanyEntity<T>
+{
+}
+
+#endregion INullableCompany
+
+#region ICompanyId
 
 public interface ICompanyId
 {
-    public Guid CompanyId { get; }
+    public Guid CompanyId { get; set; }
 }
 
-public interface ICompanyEntity
+public interface INullableCompanyId
 {
-    public Company? Company { get; }
+    public Guid? CompanyId { get; set; }
 }
+
+#endregion ICompanyId
+
+#region ICompanyEntity<T>
+
+public interface ICompanyEntity<T>
+{
+    public T Company { get; set; }
+}
+
+#endregion ICompanyEntity<T>

@@ -1,23 +1,13 @@
-﻿using Domain.Enums;
+﻿using Domain.Entities.Common;
 using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public class CompanyActivityLog : IEntityId, ICompany
+public sealed class CompanyActivityLog : ActivityLog, ICompanyId
 {
-    #region IEntityId
-
-    public Guid Id { get; set; }
-
-    #endregion IEntityId
-
-    public ActivityLogType ActivityLogType { get; set; }
-
-    #region ICompany
+    #region ICompanyId
 
     public Guid CompanyId { get; set; }
 
-    public Company? Company { get; set; }
-
-    #endregion ICompany
+    #endregion ICompanyId
 }

@@ -1,15 +1,7 @@
-﻿using Domain.Enums;
-using Domain.Interfaces;
+﻿using Domain.Entities.Common;
 
 namespace Domain.Entities;
 
-public class GlobalActivityLog : IEntityId
+public sealed class GlobalActivityLog : ActivityLog
 {
-    #region IEntityId
-
-    public Guid Id { get; set; }
-
-    #endregion IEntityId
-
-    public ActivityLogType ActivityLogType { get; set; }
 }
