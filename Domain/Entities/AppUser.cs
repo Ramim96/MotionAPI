@@ -1,8 +1,9 @@
-﻿using Domain.Common.Entities;
+﻿using Domain.Entities.Common;
+using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public class AppUser : BaseEntity<AppUser>
+public sealed class AppUser : GlobalEntity, IEntityEquality<AppUser>
 {
     public string FirstName { get; set; } = string.Empty;
 
@@ -10,20 +11,23 @@ public class AppUser : BaseEntity<AppUser>
 
     public string LastName { get; set; } = string.Empty;
 
-    public DateOnly DateOfBirth {  get; set; }
+    public DateOnly Dob { get; set; }
 
     public string Email { get; set; } = string.Empty;
 
+    public string PasswordHash { get; set; } = string.Empty;
+
     public bool Admin { get; set; } = false;
 
-    public override bool Equals(AppUser? externalEntity)
+    public bool Equals(AppUser? external)
     {
-        return externalEntity is not null &&
-            externalEntity.FirstName == FirstName &&
-            externalEntity.MiddleName == MiddleName &&
-            externalEntity.LastName == LastName &&
-            externalEntity.DateOfBirth == DateOfBirth &&
-            externalEntity.Email == Email &&
-            externalEntity.Admin == Admin;
+        return external is not null &&
+            external.FirstName == FirstName &&
+            external.MiddleName == MiddleName &&
+            external.LastName == LastName &&
+            external.Dob == Dob &&
+            external.Email == Email &&
+            external.PasswordHash == PasswordHash &&
+            external.Admin == Admin;
     }
 }

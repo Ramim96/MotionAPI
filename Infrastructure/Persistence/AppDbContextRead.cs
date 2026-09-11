@@ -15,6 +15,10 @@ public sealed class AppDbContextRead : DbContext, IAppDbcontext
 
     public DbSet<Company> Companies => Set<Company>();
 
+    public DbSet<CompanyActivityLog> CompanyActivityLogs => Set<CompanyActivityLog>();
+
+    public DbSet<GlobalActivityLog> GlobalActivityLogs => Set<GlobalActivityLog>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContextRead).Assembly);
