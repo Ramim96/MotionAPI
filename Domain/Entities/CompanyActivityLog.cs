@@ -3,7 +3,9 @@ using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public sealed class CompanyActivityLog : ActivityLog, ICompanyId
+public sealed class CompanyActivityLog :
+    ActivityLog,
+    ICompanyId
 {
     #region ICompanyId
 

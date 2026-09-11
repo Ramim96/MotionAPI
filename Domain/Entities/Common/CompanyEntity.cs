@@ -1,11 +1,12 @@
 ﻿using Domain.Interfaces;
+using System.ComponentModel.Design;
 
 namespace Domain.Entities.Common;
 
 public abstract class CompanyEntity :
     IEntityId,
     ICompany<Company?>,
-    ICompanyActivityLog<CompanyActivityLog?>
+    INullableCompanyActivityLogId
 {
     #region IEntityId
 
@@ -13,19 +14,17 @@ public abstract class CompanyEntity :
 
     #endregion IEntityId
 
-    #region ICompany
+    #region ICompany<Company?>
 
     public Guid CompanyId { get; set; }
 
     public Company? Company { get; set; }
 
-    #endregion ICompany
+    #endregion ICompany<Company?>
 
-    #region ICompanyActivityLog<T>
+    #region INullableCompanyActivityLogId
 
-    public Guid CompanyActivityLogId { get; set; }
+    public Guid? CompanyActivityLogId { get; set; }
 
-    public CompanyActivityLog? CompanyActivityLog { get; set; }
-
-    #endregion ICompanyActivityLog<T>
+    #endregion INullableCompanyActivityLogId
 }

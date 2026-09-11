@@ -17,6 +17,11 @@ public interface IGlobalActivityLogId
     public Guid GlobalActivityLogId { get; set; }
 }
 
+public interface INullableGlobalActivityLogId
+{
+    public Guid? GlobalActivityLogId { get; set; }
+}
+
 #endregion IGlobalActivityLogId
 
 #region IGlobalActivityLog<T>

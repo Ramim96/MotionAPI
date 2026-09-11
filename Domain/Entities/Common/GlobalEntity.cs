@@ -2,7 +2,9 @@
 
 namespace Domain.Entities.Common;
 
-public abstract class GlobalEntity : IEntityId, IGlobalActivityLog<GlobalActivityLog?>
+public abstract class GlobalEntity :
+    IEntityId,
+    INullableGlobalActivityLogId
 {
     #region IEntityId
 
@@ -10,11 +12,9 @@ public abstract class GlobalEntity : IEntityId, IGlobalActivityLog<GlobalActivit
 
     #endregion IEntityId
 
-    #region IGlobalActivityLog<T>
+    #region INullableGlobalActivityLogId
 
-    public Guid GlobalActivityLogId { get; set; }
+    public Guid? GlobalActivityLogId { get; set; }
 
-    public GlobalActivityLog? GlobalActivityLog { get; set; }
-
-    #endregion IGlobalActivityLog<T>
+    #endregion INullableGlobalActivityLogId
 }

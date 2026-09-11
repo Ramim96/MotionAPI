@@ -16,16 +16,14 @@ internal class CompanyConfiguration : GlobalEntityConfiguration<Company>
             .ToTable("Company");
 
         builder
-            .Property(x => x.Code)
-            .HasColumnName("Code");
+            .Property(x => x.CompanyCode);
 
         builder
-            .Property(x => x.Name)
-            .HasColumnName("Name");
+            .Property(x => x.CompanyName);
 
         // Indexes config.
         builder
-            .HasIndex(x => x.Code)
+            .HasIndex(x => x.CompanyCode)
             .IsUnique()
             .IsClustered(false)
             .HasDatabaseName($"IX_{nameof(Company)}_Code");

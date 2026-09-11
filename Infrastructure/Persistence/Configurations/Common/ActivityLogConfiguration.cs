@@ -25,6 +25,8 @@ internal class ActivityLogConfiguration<TEntity> : IEntityTypeConfiguration<TEnt
 
         builder
             .Property(x => x.ActivityLogType)
-            .HasConversion<string>();
+            .HasConversion<string>()
+            .HasMaxLength(100)
+            .IsUnicode(false);
     }
 }

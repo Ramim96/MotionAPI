@@ -3,16 +3,18 @@ using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public sealed class Company : GlobalEntity, IEntityEquality<Company>
+public sealed class Company :
+    GlobalEntity,
+    IEntityEquality<Company>
 {
-    public string Code { get; set; } = string.Empty;
+    public string CompanyCode { get; set; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string CompanyName { get; set; } = string.Empty;
 
     public bool Equals(Company? external)
     {
         return external is not null &&
-            external.Code == Code &&
-            external.Name == Name;
+            external.CompanyCode == CompanyCode &&
+            external.CompanyName == CompanyName;
     }
 }
