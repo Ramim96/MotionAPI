@@ -1,5 +1,4 @@
 ﻿using Domain.Interfaces;
-using System.ComponentModel.Design;
 
 namespace Domain.Entities.Common;
 

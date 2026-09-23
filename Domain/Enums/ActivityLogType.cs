@@ -2,5 +2,6 @@
 
 public enum ActivityLogType
 {
+    AppUser,
     Company,
 }

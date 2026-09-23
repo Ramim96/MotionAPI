@@ -4,27 +4,31 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations.Common;
 
-internal class ActivityLogConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : ActivityLog
+internal class ActivityLogConfiguration : IEntityTypeConfiguration<ActivityLog>
 {
-    public virtual void Configure(EntityTypeBuilder<TEntity> builder)
+    public void Configure(EntityTypeBuilder<ActivityLog> builder)
     {
+        string tableName = nameof(ActivityLog);
+
         // Table per type config.
         builder
-            .ToTable("ActivityLog")
-            .UseTptMappingStrategy();
+            .UseTptMappingStrategy()
+            .ToTable(tableName);
 
         // Base config.
         builder
             .HasKey(x => x.Id)
-            .HasName($"PK_{nameof(ActivityLog)}Id")
-            .IsClustered(true);
+            .HasName($"PK_{tableName}")
+            .IsClustered();
 
         builder
             .Property(x => x.Id)
+            .IsRequired()
             .HasDefaultValueSql("NEWSEQUENTIALID()");
 
         builder
             .Property(x => x.ActivityLogType)
+            .IsRequired()
             .HasConversion<string>()
             .HasMaxLength(100)
             .IsUnicode(false);
