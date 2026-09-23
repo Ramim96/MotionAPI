@@ -2,7 +2,9 @@
 
 #region ICompany
 
-public interface ICompany<T> : ICompanyId, ICompanyEntity<T>
+public interface ICompany<T> :
+    ICompanyId,
+    ICompanyEntity<T>
 {
 }
 
@@ -10,7 +12,9 @@ public interface ICompany<T> : ICompanyId, ICompanyEntity<T>
 
 #region INullableCompany
 
-public interface INullableCompany<T> : INullableCompanyId, ICompanyEntity<T>
+public interface INullableCompany<T> :
+    INullableCompanyId,
+    ICompanyEntity<T>
 {
 }
 

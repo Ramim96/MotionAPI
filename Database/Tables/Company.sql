@@ -1,22 +1,19 @@
 ﻿CREATE TABLE [dbo].[Company]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL
-        CONSTRAINT [DF_CompanyId] DEFAULT NEWSEQUENTIALID(),
+	[Id]					UNIQUEIDENTIFIER		NOT NULL CONSTRAINT [DF_Company_Id] DEFAULT NEWSEQUENTIALID(),
+	[CompanyCode]			VARCHAR(50)				NOT NULL,
+	[CompanyName]			VARCHAR(100)			NOT NULL,
+	[GlobalActivityLogId]	UNIQUEIDENTIFIER		NULL,
 
-    [CompanyCode] VARCHAR(30) NOT NULL,
-    [CompanyName] VARCHAR(100) NOT NULL,
-    [GlobalActivityLogId] UNIQUEIDENTIFIER NULL,
-
-    CONSTRAINT [PK_CompanyId]
-        PRIMARY KEY CLUSTERED ([Id]),
-
-    CONSTRAINT [FK_Company_GlobalActivityLogId]
-        FOREIGN KEY ([GlobalActivityLogId])
-        REFERENCES [dbo].[GlobalActivityLog] ([Id]),
-
-    INDEX [IX_Company_CompanyCode]
-        NONCLUSTERED ([CompanyCode]),
-
-    INDEX [IX_Company_GlobalActivityLogId]
-        NONCLUSTERED ([GlobalActivityLogId])
+	CONSTRAINT [PK_Company] PRIMARY KEY CLUSTERED ([Id]),
+	CONSTRAINT [FK_Company_GlobalActivityLog_GlobalActivityLogId] FOREIGN KEY ([GlobalActivityLogId]) REFERENCES [dbo].[GlobalActivityLog] ([Id])
 );
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Company_CompanyCode]
+	ON [dbo].[Company] ([CompanyCode]);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Company_GlobalActivityLogId]
+	ON [dbo].[Company] ([GlobalActivityLogId]);
+GO

@@ -7,18 +7,22 @@ namespace Infrastructure.Persistence.Configurations.Common;
 
 internal abstract class GlobalEntityConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : GlobalEntity
 {
+    protected readonly string _tableName = typeof(TEntity).Name;
+
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
-        string entityName = typeof(TEntity).Name;
-
         // Base config.
         builder
+            .ToTable(_tableName);
+
+        builder
             .HasKey(x => x.Id)
-            .HasName($"PK_{entityName}Id")
-            .IsClustered(true);
+            .HasName($"PK_{_tableName}")
+            .IsClustered();
 
         builder
             .Property(x => x.Id)
+            .IsRequired()
             .HasDefaultValueSql("NEWSEQUENTIALID()");
 
         // Foreign keys.
@@ -26,13 +30,6 @@ internal abstract class GlobalEntityConfiguration<TEntity> : IEntityTypeConfigur
             .HasOne<GlobalActivityLog>()
             .WithOne()
             .HasForeignKey<TEntity>(x => x.GlobalActivityLogId)
-            .HasConstraintName($"FK_{entityName}_GlobalActivityLogId");
-
-        // Indexes.
-        builder
-            .HasIndex(x => x.GlobalActivityLogId)
-            .IsUnique()
-            .IsClustered(false)
-            .HasDatabaseName($"IX_{entityName}_GlobalActivityLogId");
+            .HasConstraintName($"FK_{_tableName}_GlobalActivityLog_GlobalActivityLogId");
     }
 }

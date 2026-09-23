@@ -4,22 +4,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations;
 
-internal class CompanyActivityLogConfiguration : IEntityTypeConfiguration<CompanyActivityLog>
+internal class CompanyUserPreferenceConfiguration : IEntityTypeConfiguration<CompanyUserPreference>
 {
-    public void Configure(EntityTypeBuilder<CompanyActivityLog> builder)
+    public void Configure(EntityTypeBuilder<CompanyUserPreference> builder)
     {
-        // TPT derived table configuration.
-        string tableName = nameof(CompanyActivityLog);
+        string tableName = nameof(CompanyUserPreference);
 
-        // Base config.
+        // Table per type config.
         builder
             .ToTable(tableName);
 
+        // Base config.
         builder
             .Property(x => x.CompanyId)
             .IsRequired();
 
-        // Foreign keys.
+        // Foreign keys config.
         builder
             .HasOne<Company>()
             .WithMany()

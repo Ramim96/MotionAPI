@@ -2,10 +2,7 @@
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL,
 
-	CONSTRAINT [PK_GlobalActivityLogId]
-		PRIMARY KEY CLUSTERED ([Id]),
-
-	CONSTRAINT [FK_GlobalActivityLog_Id]
-        FOREIGN KEY ([Id])
-        REFERENCES [dbo].[ActivityLog] ([Id]),
+	CONSTRAINT [PK_GlobalActivityLog] PRIMARY KEY CLUSTERED ([Id]),
+	CONSTRAINT [FK_GlobalActivityLog_ActivityLog_Id] FOREIGN KEY ([Id]) REFERENCES [dbo].[ActivityLog] ([Id])
 );
+GO

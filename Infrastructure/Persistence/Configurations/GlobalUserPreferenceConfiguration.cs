@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations;
 
-internal class GlobalActivityLogConfiguration : IEntityTypeConfiguration<GlobalActivityLog>
+internal class GlobalUserPreferenceConfiguration : IEntityTypeConfiguration<GlobalUserPreference>
 {
-    public void Configure(EntityTypeBuilder<GlobalActivityLog> builder)
+    public void Configure(EntityTypeBuilder<GlobalUserPreference> builder)
     {
         // TPT derived table configuration.
-        string tableName = nameof(GlobalActivityLog);
+        string tableName = nameof(GlobalUserPreference);
 
         // Base config.
         builder

@@ -9,47 +9,46 @@ internal class AppUserConfiguration : GlobalEntityConfiguration<AppUser>
 {
     public override void Configure(EntityTypeBuilder<AppUser> builder)
     {
-        // Base config.
         base.Configure(builder);
 
-        builder
-            .ToTable("AppUser");
-
+        // Base config.
         builder
             .Property(x => x.FirstName)
-            .HasColumnName("FirstName");
-
-        builder
-            .Property(x => x.MiddleName)
-            .HasColumnName("MiddleName");
+            .IsRequired()
+            .HasMaxLength(100)
+            .IsUnicode(false);
 
         builder
             .Property(x => x.LastName)
-            .HasColumnName("LastName");
+            .IsRequired()
+            .HasMaxLength(100)
+            .IsUnicode(false);
 
         builder
             .Property(x => x.Dob)
-            .HasColumnType("date")
-            .HasColumnName("Dob");
+            .IsRequired()
+            .IsUnicode(false);
 
         builder
             .Property(x => x.Email)
-            .HasColumnName("Email");
+            .IsRequired()
+            .HasMaxLength(100)
+            .IsUnicode(false);
 
         builder
             .Property(x => x.PasswordHash)
-            .HasColumnName("Password");
+            .IsRequired()
+            .HasMaxLength(200);
 
         builder
             .Property(x => x.Admin)
-            .HasDefaultValue(false)
-            .HasColumnName("Admin");
+            .HasDefaultValue(false);
 
-        // Indexes config.
+        // Foreign keys config.
         builder
-            .HasIndex(x => x.Email)
-            .IsUnique()
-            .IsClustered(false)
-            .HasDatabaseName($"IX_{nameof(AppUser)}_Email");
+            .HasOne<GlobalActivityLog>()
+            .WithOne()
+            .HasForeignKey<AppUser>(x => x.GlobalActivityLogId)
+            .HasConstraintName($"FK_{_tableName}_GlobalActivityLog_GlobalActivityLogId");
     }
 }

@@ -61,8 +61,11 @@
   <ItemGroup>
     <Build Include="Tables\ActivityLog.sql" />
     <Build Include="Tables\GlobalActivityLog.sql" />
-    <Build Include="Tables\Company.sql" />
     <Build Include="Tables\CompanyActivityLog.sql" />
-    <Build Include="Tables\DatabaseMigrations.sql" />
+    <Build Include="Tables\Company.sql" />
+    <Build Include="Tables\AppUser.sql" />
+    <Build Include="Tables\UserPreference.sql" />
+    <Build Include="Tables\GlobalUserPreference.sql" />
+    <Build Include="Tables\CompanyUserPreference.sql" />
   </ItemGroup>
 </Project>
